@@ -1,0 +1,84 @@
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0f0f0f;
+    color: #e0e0e0;
+}
+
+.hero {
+    background-image: url('../assets/bg-dark.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero .title {
+    font-size: 4rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+.hero .subtitle {
+    font-size: 1.5rem;
+    color: #bbbbbb;
+}
+
+.navbar {
+    background-color: #1a1a1a;
+    padding: 1rem;
+    text-align: center;
+}
+
+.navbar a {
+    color: #ff9800;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #fff;
+}
+
+section {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+h2 {
+    color: #ff9800;
+    font-size: 2rem;
+}
+
+.timeline .event {
+    padding: 10px 0;
+    border-left: 3px solid #ff9800;
+    margin-left: 20px;
+    padding-left: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    color: #777;
+}
+
+.fade-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
