@@ -1,3 +1,134 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0f0f0f;
+    color: #e0e0e0;
+    line-height: 1.6;
+    min-height: 100%;
+    position: relative;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Main Container */
+.main-container {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+}
+
+/* Navigation */
+.navbar {
+    background-color: #1a1a1a;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Sections */
+section {
+    padding: 60px 20px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Modal Fixes */
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.modal {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1a1a1a;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    border-radius: 8px;
+    max-height: 85vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile Specific Fixes */
+@media (max-width: 768px) {
+    body {
+        position: static;
+    }
+
+    .modal-container {
+        position: fixed;
+        overflow-y: scroll;
+    }
+
+    .modal {
+        margin: 20px auto;
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        max-height: none;
+    }
+
+    section {
+        padding: 40px 15px;
+    }
+
+    .navbar {
+        position: sticky;
+        top: 0;
+    }
+}
+
 /* Base Styles and Animations */
 @keyframes fadeIn {
     from {
@@ -19,42 +150,6 @@
         transform: translateX(0);
         opacity: 1;
     }
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #0f0f0f;
-    color: #e0e0e0;
-    line-height: 1.6;
-    position: relative;
-}
-
-/* Mobile Touch Optimization */
-* {
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Hero Section with Interactive Background */
-.hero {
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    background: #0f0f0f;
-    padding: 20px;
-    width: 100%;
 }
 
 .hero::before {
@@ -124,28 +219,6 @@ body {
     opacity: 1;
 }
 
-/* Navigation Responsive */
-.navbar {
-    background-color: #1a1a1a;
-    padding: 1rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.nav-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 5px 0;
-}
-
 .navbar a {
     color: #ff9800;
     text-decoration: none;
@@ -160,18 +233,6 @@ body {
     color: #fff;
     background-color: rgba(255, 152, 0, 0.1);
     transform: translateY(-2px);
-}
-
-/* Sections Responsive */
-section {
-    padding: 60px 20px;
-    max-width: 900px;
-    margin: auto;
-    width: 100%;
-    box-sizing: border-box;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease-out;
 }
 
 section.visible {
@@ -229,37 +290,6 @@ h2 {
 #projects li:nth-child(3) { animation-delay: 0.3s; }
 #projects li:nth-child(4) { animation-delay: 0.4s; }
 
-/* Modal Styles */
-.modal-container {
-    -webkit-overflow-scrolling: touch;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    backdrop-filter: blur(5px);
-}
-
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #1a1a1a;
-    border-radius: 8px;
-    max-width: 600px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 152, 0, 0.2);
-}
-
 .modal-content {
     color: #e0e0e0;
     position: relative;
@@ -298,63 +328,6 @@ h2 {
 #modalDescription {
     line-height: 1.8;
     margin: 0;
-}
-
-/* Modal Responsive Styles */
-@media (max-width: 768px) {
-    body {
-        overflow-y: auto !important;
-    }
-
-    .navbar {
-        padding: 0.5rem;
-    }
-
-    .nav-container {
-        padding: 5px;
-    }
-
-    .navbar a {
-        padding: 8px 12px;
-        white-space: nowrap;
-    }
-
-    section {
-        padding: 40px 15px;
-    }
-
-    .timeline .event {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
-    #projects ul {
-        grid-template-columns: 1fr;
-    }
-
-    .skills-container {
-        padding: 10px;
-    }
-
-    .modal {
-        width: 95%;
-        padding: 15px;
-    }
-
-    #modalTitle {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
-
-    #modalDescription {
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
-
-    .close-btn {
-        right: 10px;
-        top: 10px;
-    }
 }
 
 /* Custom Scrollbar for Modal */
@@ -548,11 +521,6 @@ h2 {
         padding: 20px;
         margin-top: 40px;
     }
-}
-
-/* Ensure smooth scrolling */
-html {
-    scroll-behavior: smooth;
 }
 
 /* Loading Animation */
