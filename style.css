@@ -4,11 +4,14 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;
 }
 
 html {
     scroll-behavior: smooth;
     height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -18,14 +21,13 @@ body {
     line-height: 1.6;
     min-height: 100%;
     position: relative;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 /* Main Container */
 .main-container {
     width: 100%;
-    overflow-x: hidden;
     position: relative;
 }
 
@@ -103,11 +105,29 @@ section {
 @media (max-width: 768px) {
     body {
         position: static;
+        overflow-x: hidden;
+    }
+
+    .hero::before {
+        display: none; /* Remove the radial gradient effect on mobile */
+    }
+
+    .cursor-effect {
+        display: none; /* Remove cursor effect on mobile */
+    }
+
+    .hero {
+        background: #1a1a1a; /* Simplified background for mobile */
+    }
+
+    .hero-bg {
+        display: none; /* Remove complex background on mobile */
     }
 
     .modal-container {
         position: fixed;
-        overflow-y: scroll;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .modal {
@@ -116,16 +136,19 @@ section {
         top: 0;
         left: 0;
         transform: none;
-        max-height: none;
+        max-height: 90vh;
+        width: 95%;
     }
 
     section {
         padding: 40px 15px;
+        overflow-x: hidden;
     }
 
     .navbar {
         position: sticky;
         top: 0;
+        width: 100%;
     }
 }
 
