@@ -1,30 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Add cursor effect div to hero section
+    // Calculate scrollbar width to prevent layout shift
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+
+    // Store scroll position when opening modal
+    let scrollPosition = 0;
+
+    // Navbar sticky behavior
+    const navbar = document.querySelector('.navbar');
     const hero = document.querySelector('.hero');
-    const cursorEffect = document.createElement('div');
-    cursorEffect.className = 'cursor-effect';
-    hero.appendChild(cursorEffect);
-
-    // Handle cursor movement
-    hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        
-        hero.style.setProperty('--cursor-x', `${x}%`);
-        hero.style.setProperty('--cursor-y', `${y}%`);
-    });
-
-    // Handle touch movement for mobile
-    hero.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        const rect = hero.getBoundingClientRect();
-        const touch = e.touches[0];
-        const x = ((touch.clientX - rect.left) / rect.width) * 100;
-        const y = ((touch.clientY - rect.top) / rect.height) * 100;
-        
-        hero.style.setProperty('--cursor-x', `${x}%`);
-        hero.style.setProperty('--cursor-y', `${y}%`);
+    
+    window.addEventListener('scroll', () => {
+        const heroBottom = hero.offsetTop + hero.offsetHeight;
+        if (window.scrollY >= heroBottom) {
+            navbar.classList.add('sticky');
+        } else {
+            navbar.classList.remove('sticky');
+        }
     });
 
     // Fade in animation for sections
@@ -92,16 +84,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 "• Utilized ESP32 microcontroller for data acquisition\n" +
                 "• Implemented Python for point cloud processing\n" +
                 "• Developed real-time visualization system\n" +
-                "• Achieved accuracy within 2mm for small objects\n" +
                 "• Created user-friendly interface for scan control"
         },
         grinding: {
-            title: "Grinding Research Project",
+            title: "Industrial Grinding Research Project",
             description: "Advanced research in CNC grinding techniques:\n\n" +
                 "• Studied adaptive grinding methodologies\n" +
-                "• Developed optimization algorithms for surface finish\n" +
                 "• Analyzed material removal rates\n" +
-                "• Implemented process control improvements\n" +
                 "• Documented research findings and recommendations"
         },
         robot: {
@@ -110,8 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "• Designed using QTR sensors for precise line detection\n" +
                 "• Programmed Arduino for path optimization\n" +
                 "• Implemented PID control for smooth movement\n" +
-                "• Achieved reliable performance on complex paths\n" +
-                "• Added obstacle detection features"
+                "• Achieved reliable performance on complex paths"
         },
         gesture: {
             title: "Hand Gesture Control Device",
@@ -119,28 +107,64 @@ document.addEventListener("DOMContentLoaded", () => {
                 "• Developed real-time gesture recognition\n" +
                 "• Implemented multiple control commands\n" +
                 "• Created responsive user interface\n" +
-                "• Achieved 95% gesture recognition accuracy\n" +
-                "• Added customizable gesture mapping"
+                "• Achieved 90% gesture recognition accuracy"
         }
     };
 
+    function openModal(title, description) {
+        modalTitle.textContent = title;
+        modalDescription.innerHTML = description.replace(/\n/g, '<br>');
+        
+        // Show modal
+        modalContainer.style.display = 'block';
+        
+        // Prevent background scrolling while keeping position
+        document.body.classList.add('modal-open');
+        
+        // Add animation
+        requestAnimationFrame(() => {
+            modalContainer.style.opacity = '1';
+            const modalElement = modalContainer.querySelector('.modal');
+            if (modalElement) {
+                modalElement.style.transform = 'translate(-50%, -50%)';
+                modalElement.style.opacity = '1';
+            }
+        });
+    }
+
+    function closeModal() {
+        const modalElement = modalContainer.querySelector('.modal');
+        
+        // Start fade out animation
+        if (modalElement) {
+            modalElement.style.transform = 'translate(-50%, -45%)';
+            modalElement.style.opacity = '0';
+        }
+        modalContainer.style.opacity = '0';
+
+        // Hide modal after animation
+        setTimeout(() => {
+            modalContainer.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }, 300);
+    }
+
     // Add click event listeners to all modal triggers
     document.querySelectorAll('[data-modal]').forEach(element => {
-        element.addEventListener('click', (e) => {
-            e.preventDefault();
+        element.addEventListener('click', () => {
             const modalId = element.getAttribute('data-modal');
             const data = modalData[modalId];
             if (data) {
-                modalTitle.textContent = data.title;
-                modalDescription.innerHTML = data.description.replace(/\n/g, '<br>');
-                modalContainer.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                openModal(data.title, data.description);
             }
         });
     });
 
     // Close modal when clicking the close button
-    closeBtn.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModal();
+    });
 
     // Close modal when clicking outside
     modalContainer.addEventListener('click', (event) => {
@@ -156,20 +180,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    function closeModal() {
-        modalContainer.style.display = 'none';
-        document.body.style.overflow = ''; // Restore scrolling
-    }
-
-    // Smooth scroll for navigation links
+    // Smooth scroll for navigation links with offset for sticky navbar
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const navbarHeight = navbar.offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
