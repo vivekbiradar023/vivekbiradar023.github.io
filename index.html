@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Vivek Biradar | Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="hero parallax">
+    <!-- Interactive Hero Section -->
+    <div class="hero">
+        <div class="hero-bg"></div>
         <div class="content">
             <h1 class="title">Vivek Biradar</h1>
             <p class="subtitle">Mechatronics Engineer | Designer | Innovator</p>
@@ -16,13 +18,15 @@
     </div>
 
     <nav class="navbar">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#activities">Activities</a>
-        <a href="#contact">Contact</a>
+        <div class="nav-container">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#activities">Activities</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
 
     <section id="about" class="fade-section">
@@ -34,16 +38,20 @@
         <h2>Experience</h2>
         <div class="timeline">
             <div class="event" data-modal="suind">
-                <span>SUIND Pvt Ltd (2025)</span> - Mechatronics Intern
+                <span>SUIND Pvt Ltd (2025)</span>
+                <p>Drone assembly, testing, and circuit troubleshooting.</p>
             </div>
             <div class="event" data-modal="vecros">
-                <span>Vecros Technologies (2024)</span> - Mechanical Design Intern
+                <span>Vecros Technologies (2024)</span>
+                <p>Designed modular drone components using Fusion 360.</p>
             </div>
             <div class="event" data-modal="eleation">
-                <span>ELEATION (2024)</span> - CAD Intern
+                <span>ELEATION (2024)</span>
+                <p>CAD design, animation, and rendering using Creo.</p>
             </div>
             <div class="event" data-modal="hal">
-                <span>HAL ARDC (2023)</span> - Trainee Intern
+                <span>HAL ARDC (2023)</span>
+                <p>Gained exposure to aerospace design & manufacturing.</p>
             </div>
         </div>
     </section>
@@ -52,24 +60,50 @@
         <h2>Featured Projects</h2>
         <ul>
             <li data-modal="scanner">
-                <strong>Development of 3D Scanner:</strong> Real-time point cloud data acquisition using ESP32 and Python.
+                <strong>Development of 3D Scanner</strong>
+                <p>Real-time point cloud data acquisition using ESP32 and Python.</p>
             </li>
             <li data-modal="grinding">
-                <strong>Industrial Grinding Research:</strong> Advanced CNC and adaptive grinding techniques.
+                <strong>Grinding Research</strong>
+                <p>Advanced CNC and adaptive grinding techniques.</p>
             </li>
             <li data-modal="robot">
-                <strong>Line Follower Robot:</strong> Path tracking using QTR sensors & Arduino logic.
+                <strong>Line Follower Robot</strong>
+                <p>Path tracking using QTR sensors & Arduino logic.</p>
             </li>
             <li data-modal="gesture">
-                <strong>Hand Gesture Control Device:</strong> Real-time ultrasonic gesture-based control system.
+                <strong>Hand Gesture Control Device</strong>
+                <p>Real-time ultrasonic gesture-based control system.</p>
             </li>
         </ul>
     </section>
 
     <section id="skills" class="fade-section">
         <h2>Skills</h2>
-        <p>Fusion 360, CREO parametric, CATIA, Python, Arduino IDE, Ansys Workbench, 3D Printing, Microsoft 365</p>
-        <p><em>Soft Skills:</em> Leadership, Communication, Teamwork, Problem-solving</p>
+        <div class="skills-container">
+            <div class="skills-column">
+                <h3>Technical Skills</h3>
+                <ul>
+                    <li>Fusion 360</li>
+                    <li>CREO parametric</li>
+                    <li>CATIA</li>
+                    <li>Python</li>
+                    <li>Arduino IDE</li>
+                    <li>Ansys Workbench</li>
+                    <li>3D Printing</li>
+                    <li>Microsoft 365</li>
+                </ul>
+            </div>
+            <div class="skills-column">
+                <h3>Soft Skills</h3>
+                <ul>
+                    <li>Leadership</li>
+                    <li>Communication</li>
+                    <li>Teamwork</li>
+                    <li>Problem-solving</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <section id="certifications" class="fade-section">
@@ -90,8 +124,7 @@
             <li>INPhO National Certificate – 2020</li>
             <li>Student coordinator for 8th International Conference on SMARTME-2024</li>
             <li>I-ACT 2025 Organizing Head</li>
-            <li>Education on Wheels</li>
-            <li>Digital Campaign Leader</li>
+            <li>Education on Wheels & Digital Campaign Leader</li>
         </ul>
     </section>
 
@@ -102,7 +135,6 @@
         <p><a href="https://linkedin.com/in/vivek-biradar-a063001a0" target="_blank">LinkedIn Profile</a></p>
     </section>
 
-    <!-- Modal Container -->
     <div class="modal-container" id="modalContainer">
         <div class="modal">
             <div class="modal-content">
