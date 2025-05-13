@@ -1,18 +1,18 @@
+
 /* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
 }
 
-html {
-    scroll-behavior: smooth;
+html, body {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
-    touch-action: manipulation;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -21,11 +21,8 @@ body {
     color: #e0e0e0;
     line-height: 1.6;
     min-height: 100%;
-    position: relative;
     overflow-x: hidden;
     width: 100%;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
 }
 
 /* Main Container */
@@ -36,14 +33,13 @@ body {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: 100dvh;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 20px;
-    position: relative;
     background-color: #1a1a1a;
 }
 
@@ -74,7 +70,7 @@ section {
     position: relative;
 }
 
-/* Modal Fixes */
+/* Modal */
 .modal-container {
     position: fixed;
     top: 0;
@@ -85,7 +81,6 @@ section {
     z-index: 1000;
     display: none;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
 }
 
 .modal {
@@ -101,120 +96,58 @@ section {
     border-radius: 8px;
     max-height: 85vh;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
 }
 
-/* Mobile Specific Fixes */
+/* Mobile Fixes */
 @media (max-width: 768px) {
     body {
-        position: static;
         overflow-x: hidden;
-        touch-action: manipulation;
-    }
-
-    .hero::before {
-        display: none; /* Remove the radial gradient effect on mobile */
-    }
-
-    .cursor-effect {
-        display: none; /* Remove cursor effect on mobile */
+        position: static !important;
     }
 
     .hero {
-        background: #1a1a1a; /* Simplified background for mobile */
-    }
-
-    .hero-bg {
-        display: none; /* Remove complex background on mobile */
-    }
-
-    .modal-container {
-        position: fixed;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        touch-action: pan-y;
-    }
-
-    .modal {
-        margin: 20px auto;
-        position: relative;
-        top: 0;
-        left: 0;
-        transform: none;
-        max-height: 90vh;
-        width: 95%;
-        -webkit-overflow-scrolling: touch;
-        touch-action: pan-y;
+        min-height: 100dvh;
+        background: #1a1a1a;
     }
 
     section {
         padding: 40px 15px;
         overflow-x: hidden;
-        touch-action: pan-y;
     }
 
-    .navbar {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        touch-action: none;
-    }
-
-    /* Improve touch targets for mobile */
-    .navbar a,
-    .timeline .event,
-    #projects li,
-    .close-btn {
-        min-height: 44px; /* Minimum touch target size */
-        touch-action: manipulation;
-    }
-
-    /* Make scrollable elements more touch-friendly */
-    .scrollable {
-        -webkit-overflow-scrolling: touch;
-        touch-action: pan-y;
+    .modal-container {
         overflow-y: auto;
     }
-}
 
-/* Base Styles and Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+    .modal {
+        top: 0;
+        left: 0;
+        transform: none;
+        max-height: 90vh;
+        width: 95%;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .skills-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .skills-column {
+        width: 100%;
+        max-width: none;
+    }
+
+    #projects li {
+        margin-bottom: 15px;
+    }
+
+    .footer {
+        padding: 20px;
+        margin-top: 40px;
     }
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* Remove the hero::before effect completely */
-.hero::before {
-    display: none;
-}
-
-/* Remove the hero-bg completely */
-.hero-bg {
-    display: none;
-}
-
-/* Remove cursor-effect completely */
-.cursor-effect {
-    display: none;
-}
-
+/* Content and Elements */
 .hero .content {
     position: relative;
     z-index: 2;
@@ -264,7 +197,7 @@ h2 {
     text-align: center;
 }
 
-/* Timeline Responsive */
+/* Timeline */
 .timeline .event {
     padding: 20px;
     border-left: 3px solid #ff9800;
@@ -274,16 +207,9 @@ h2 {
     border-radius: 0 8px 8px 0;
     cursor: pointer;
     transition: all 0.3s ease;
-    animation: slideIn 0.5s ease-out forwards;
-    opacity: 0;
 }
 
-.timeline .event:nth-child(1) { animation-delay: 0.1s; }
-.timeline .event:nth-child(2) { animation-delay: 0.2s; }
-.timeline .event:nth-child(3) { animation-delay: 0.3s; }
-.timeline .event:nth-child(4) { animation-delay: 0.4s; }
-
-/* Projects Responsive */
+/* Projects */
 #projects ul {
     list-style: none;
     padding: 0;
@@ -298,99 +224,16 @@ h2 {
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease-out forwards;
-    opacity: 0;
+    border-left: 3px solid #ff9800;
 }
 
-#projects li:nth-child(1) { animation-delay: 0.1s; }
-#projects li:nth-child(2) { animation-delay: 0.2s; }
-#projects li:nth-child(3) { animation-delay: 0.3s; }
-#projects li:nth-child(4) { animation-delay: 0.4s; }
-
-.modal-content {
-    color: #e0e0e0;
-    position: relative;
-    padding-right: 20px;
-}
-
-.close-btn {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #ff9800;
-    transition: color 0.3s ease;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+#projects li:hover {
+    transform: translateX(10px);
     background-color: rgba(255, 152, 0, 0.1);
+    border-left-color: #fff;
 }
 
-.close-btn:hover {
-    color: #fff;
-    background-color: rgba(255, 152, 0, 0.2);
-}
-
-#modalTitle {
-    color: #ff9800;
-    margin: 0 0 20px 0;
-    font-size: 1.8rem;
-    padding-right: 40px;
-}
-
-#modalDescription {
-    line-height: 1.8;
-    margin: 0;
-}
-
-/* Custom Scrollbar for Modal */
-.modal::-webkit-scrollbar {
-    width: 8px;
-}
-
-.modal::-webkit-scrollbar-track {
-    background: rgba(255, 152, 0, 0.1);
-    border-radius: 4px;
-}
-
-.modal::-webkit-scrollbar-thumb {
-    background: rgba(255, 152, 0, 0.3);
-    border-radius: 4px;
-}
-
-.modal::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 152, 0, 0.5);
-}
-
-/* Touch Device Optimization */
-@media (hover: none) {
-    .navbar a:hover,
-    .timeline .event:hover,
-    #projects li:hover {
-        transform: none;
-    }
-
-    .timeline .event:active,
-    #projects li:active {
-        background-color: rgba(255, 152, 0, 0.1);
-    }
-}
-
-/* Ensure content is scrollable on iOS */
-.scrollable {
-    -webkit-overflow-scrolling: touch;
-    overflow-y: auto;
-}
-
-/* Skills Section Layout */
-#skills {
-    text-align: center;
-}
-
+/* Skills */
 .skills-container {
     display: flex;
     justify-content: center;
@@ -425,97 +268,13 @@ h2 {
     color: #e0e0e0;
 }
 
-/* Experience Timeline Styles */
-.timeline .event {
-    padding: 20px;
-    border-left: 3px solid #ff9800;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    background-color: rgba(255, 152, 0, 0.05);
-    border-radius: 0 8px 8px 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.timeline .event:hover {
-    transform: translateX(10px);
-    background-color: rgba(255, 152, 0, 0.1);
-    border-left-color: #fff;
-}
-
-.timeline .event span {
-    color: #ff9800;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.timeline .event p {
-    margin: 0;
-    color: #e0e0e0;
-}
-
-/* Projects Styles */
-#projects ul {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-#projects li {
-    padding: 20px;
-    background-color: rgba(255, 152, 0, 0.05);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-left: 3px solid #ff9800;
-}
-
-#projects li:hover {
-    transform: translateX(10px);
-    background-color: rgba(255, 152, 0, 0.1);
-    border-left-color: #fff;
-}
-
-#projects strong {
-    color: #ff9800;
-    display: block;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-}
-
-#projects p {
-    margin: 0;
-    color: #e0e0e0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .skills-container {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .skills-column {
-        width: 100%;
-        max-width: none;
-    }
-
-    #projects li {
-        margin-bottom: 15px;
-    }
-}
-
-/* Footer Styles */
+/* Footer */
 .footer {
     text-align: center;
     padding: 30px 20px;
     background: linear-gradient(to right, #1a1a1a, #2d2d2d, #1a1a1a);
     color: #777;
     margin-top: 60px;
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -532,48 +291,26 @@ h2 {
     color: #ff9800;
 }
 
-/* Responsive Footer */
-@media (max-width: 768px) {
-    .footer {
-        padding: 20px;
-        margin-top: 40px;
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Loading Animation */
-@keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
-.loading {
-    background: linear-gradient(90deg, #1a1a1a 25%, #2d2d2d 50%, #1a1a1a 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-}
-
-/* Mobile Specific Adjustments */
-@media (max-width: 480px) {
-    .hero .title {
-        font-size: clamp(2rem, 6vw, 2.5rem);
-    }
-
-    .hero .subtitle {
-        font-size: clamp(0.9rem, 3vw, 1.2rem);
-    }
-
-    .navbar a {
-        font-size: 0.9rem;
-        padding: 6px 10px;
-    }
-
-    section {
-        padding: 30px 10px;
-    }
-
-    .timeline .event,
-    #projects li {
-        margin-bottom: 15px;
-        padding: 12px;
-    }
-} 
