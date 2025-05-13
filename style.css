@@ -41,7 +41,7 @@ body {
     text-align: center;
     padding: 20px;
     position: relative;
-    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+    background-color: #1a1a1a;
 }
 
 /* Navigation */
@@ -175,27 +175,19 @@ section {
     }
 }
 
+/* Remove the hero::before effect completely */
 .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 152, 0, 0.1), transparent 50%);
-    opacity: 0.8;
-    z-index: 1;
-    transition: all 0.3s ease;
+    display: none;
 }
 
+/* Remove the hero-bg completely */
 .hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
-    z-index: 0;
+    display: none;
+}
+
+/* Remove cursor-effect completely */
+.cursor-effect {
+    display: none;
 }
 
 .hero .content {
@@ -209,7 +201,6 @@ section {
     font-size: clamp(2.5rem, 8vw, 4rem);
     color: #ffffff;
     margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     letter-spacing: 2px;
 }
 
@@ -217,29 +208,7 @@ section {
     font-size: clamp(1rem, 4vw, 1.5rem);
     color: #bbbbbb;
     margin-top: 1rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     letter-spacing: 1px;
-}
-
-.cursor-effect {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: radial-gradient(
-        circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
-        rgba(255, 152, 0, 0.15) 0%,
-        rgba(255, 152, 0, 0.05) 20%,
-        transparent 40%
-    );
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.hero:hover .cursor-effect {
-    opacity: 1;
 }
 
 .navbar a {
