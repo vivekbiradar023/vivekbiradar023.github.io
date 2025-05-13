@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,32 +27,48 @@
 
     <section id="about" class="fade-section">
         <h2>About Me</h2>
-        <p>I’m a passionate Mechatronics Engineer from REVA University. I blend mechanics, electronics, and computing to solve real-world problems. With hands-on internships in drone tech, CAD design, and aerospace engineering, I aim to drive innovation in robotics and automation.</p>
+        <p>I'm a passionate Mechatronics Engineer from REVA University. I blend mechanics, electronics, and computing to solve real-world problems. With hands-on internships in drone tech, CAD design, and aerospace engineering, I aim to drive innovation in robotics and automation.</p>
     </section>
 
     <section id="experience" class="fade-section">
         <h2>Experience</h2>
         <div class="timeline">
-            <div class="event"><span>SUIND Pvt Ltd (2025)</span> - Drone assembly, testing, and circuit troubleshooting.</div>
-            <div class="event"><span>Vecros Technologies (2024)</span> - Designed modular drone components using Fusion 360.</div>
-            <div class="event"><span>Eleation (2024)</span> - CAD design, animation, and rendering using Creo.</div>
-            <div class="event"><span>HAL ARDC (2023)</span> - Gained exposure to aerospace design & manufacturing.</div>
+            <div class="event" data-modal="suind">
+                <span>SUIND Pvt Ltd (2025)</span> - Mechatronics Intern
+            </div>
+            <div class="event" data-modal="vecros">
+                <span>Vecros Technologies (2024)</span> - Mechanical Design Intern
+            </div>
+            <div class="event" data-modal="eleation">
+                <span>ELEATION (2024)</span> - CAD Intern
+            </div>
+            <div class="event" data-modal="hal">
+                <span>HAL ARDC (2023)</span> - Trainee Intern
+            </div>
         </div>
     </section>
 
     <section id="projects" class="fade-section">
         <h2>Featured Projects</h2>
         <ul>
-            <li><strong>3D Scanner:</strong> Real-time point cloud data acquisition using ESP32 and Python.</li>
-            <li><strong>Grinding Research:</strong> Advanced CNC and adaptive grinding techniques.</li>
-            <li><strong>Line Follower Robot:</strong> Path tracking using QTR sensors & Arduino logic.</li>
-            <li><strong>Gesture Control:</strong> Real-time ultrasonic gesture-based control system.</li>
+            <li data-modal="scanner">
+                <strong>Development of 3D Scanner:</strong> Real-time point cloud data acquisition using ESP32 and Python.
+            </li>
+            <li data-modal="grinding">
+                <strong>Industrial Grinding Research:</strong> Advanced CNC and adaptive grinding techniques.
+            </li>
+            <li data-modal="robot">
+                <strong>Line Follower Robot:</strong> Path tracking using QTR sensors & Arduino logic.
+            </li>
+            <li data-modal="gesture">
+                <strong>Hand Gesture Control Device:</strong> Real-time ultrasonic gesture-based control system.
+            </li>
         </ul>
     </section>
 
     <section id="skills" class="fade-section">
         <h2>Skills</h2>
-        <p>Fusion 360, Creo, CATIA, Python, Arduino IDE, Ansys, 3D Printing, Microsoft 365</p>
+        <p>Fusion 360, CREO parametric, CATIA, Python, Arduino IDE, Ansys Workbench, 3D Printing, Microsoft 365</p>
         <p><em>Soft Skills:</em> Leadership, Communication, Teamwork, Problem-solving</p>
     </section>
 
@@ -62,7 +77,8 @@
         <ul>
             <li>Advanced Robotics – NPTEL</li>
             <li>Drone Workshop – IISC Bangalore</li>
-            <li>CATIA & Creo Design Certification</li>
+            <li>CATIA</li>
+            <li>CREO parametric</li>
             <li>Arduino Projects: Concept to Product</li>
         </ul>
     </section>
@@ -70,10 +86,12 @@
     <section id="activities" class="fade-section">
         <h2>Achievements & Activities</h2>
         <ul>
-            <li>ISA USA Scholarship Winner – 2024</li>
+            <li>ISA (USA) Scholarship Winner – 2024</li>
             <li>INPhO National Certificate – 2020</li>
+            <li>Student coordinator for 8th International Conference on SMARTME-2024</li>
             <li>I-ACT 2025 Organizing Head</li>
-            <li>Education on Wheels & Digital Campaign Leader</li>
+            <li>Education on Wheels</li>
+            <li>Digital Campaign Leader</li>
         </ul>
     </section>
 
@@ -83,6 +101,17 @@
         <p>Phone: 6363071014</p>
         <p><a href="https://linkedin.com/in/vivek-biradar-a063001a0" target="_blank">LinkedIn Profile</a></p>
     </section>
+
+    <!-- Modal Container -->
+    <div class="modal-container" id="modalContainer">
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <p>&copy; 2025 Vivek Biradar</p>
