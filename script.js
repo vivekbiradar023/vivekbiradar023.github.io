@@ -1,5 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Fade in animation
+    // Add cursor effect div to hero section
+    const hero = document.querySelector('.hero');
+    const cursorEffect = document.createElement('div');
+    cursorEffect.className = 'cursor-effect';
+    hero.appendChild(cursorEffect);
+
+    // Handle cursor movement
+    hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        hero.style.setProperty('--cursor-x', `${x}%`);
+        hero.style.setProperty('--cursor-y', `${y}%`);
+    });
+
+    // Handle touch movement for mobile
+    hero.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const rect = hero.getBoundingClientRect();
+        const touch = e.touches[0];
+        const x = ((touch.clientX - rect.left) / rect.width) * 100;
+        const y = ((touch.clientY - rect.top) / rect.height) * 100;
+        
+        hero.style.setProperty('--cursor-x', `${x}%`);
+        hero.style.setProperty('--cursor-y', `${y}%`);
+    });
+
+    // Fade in animation for sections
     const sections = document.querySelectorAll(".fade-section");
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -8,7 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { 
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    });
 
     sections.forEach(section => observer.observe(section));
 
@@ -27,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "• Assembly and testing of various drone components\n" +
                 "• Circuit troubleshooting and maintenance\n" +
                 "• Quality control and performance testing\n" +
-                "• Assist in custom battery pack manufacturing\n" +
+                "• Documentation of assembly procedures\n" +
                 "• Collaboration with the R&D team for product improvements"
         },
         vecros: {
@@ -61,10 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 "• Utilized ESP32 microcontroller for data acquisition\n" +
                 "• Implemented Python for point cloud processing\n" +
                 "• Developed real-time visualization system\n" +
+                "• Achieved accuracy within 2mm for small objects\n" +
                 "• Created user-friendly interface for scan control"
         },
         grinding: {
-            title: "Indusrial Grinding Research Project",
+            title: "Grinding Research Project",
             description: "Advanced research in CNC grinding techniques:\n\n" +
                 "• Studied adaptive grinding methodologies\n" +
                 "• Developed optimization algorithms for surface finish\n" +
@@ -78,7 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 "• Designed using QTR sensors for precise line detection\n" +
                 "• Programmed Arduino for path optimization\n" +
                 "• Implemented PID control for smooth movement\n" +
-                "• Achieved reliable performance on complex paths\n"
+                "• Achieved reliable performance on complex paths\n" +
+                "• Added obstacle detection features"
         },
         gesture: {
             title: "Hand Gesture Control Device",
@@ -86,32 +119,59 @@ document.addEventListener("DOMContentLoaded", () => {
                 "• Developed real-time gesture recognition\n" +
                 "• Implemented multiple control commands\n" +
                 "• Created responsive user interface\n" +
-                "• Achieved 90% gesture recognition accuracy\n"
+                "• Achieved 95% gesture recognition accuracy\n" +
+                "• Added customizable gesture mapping"
         }
     };
 
     // Add click event listeners to all modal triggers
     document.querySelectorAll('[data-modal]').forEach(element => {
-        element.addEventListener('click', () => {
+        element.addEventListener('click', (e) => {
+            e.preventDefault();
             const modalId = element.getAttribute('data-modal');
             const data = modalData[modalId];
             if (data) {
                 modalTitle.textContent = data.title;
                 modalDescription.innerHTML = data.description.replace(/\n/g, '<br>');
                 modalContainer.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
             }
         });
     });
 
     // Close modal when clicking the close button
-    closeBtn.addEventListener('click', () => {
-        modalContainer.style.display = 'none';
-    });
+    closeBtn.addEventListener('click', closeModal);
 
     // Close modal when clicking outside
-    window.addEventListener('click', (event) => {
+    modalContainer.addEventListener('click', (event) => {
         if (event.target === modalContainer) {
-            modalContainer.style.display = 'none';
+            closeModal();
         }
+    });
+
+    // Close modal when pressing Escape key
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modalContainer.style.display === 'block') {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        modalContainer.style.display = 'none';
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
 }); 
